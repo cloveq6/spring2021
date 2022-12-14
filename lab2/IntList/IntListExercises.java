@@ -1,4 +1,4 @@
-package Intlist;
+package IntList;
 
 public class IntListExercises {
 
