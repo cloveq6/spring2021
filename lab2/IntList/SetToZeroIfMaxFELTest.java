@@ -35,4 +35,28 @@ public class SetToZeroIfMaxFELTest {
     public void  testFirstDigitEqualsLastDigit2(){
         assertTrue(IntListExercises.firstDigitEqualsLastDigit(535));
     }
+
+    @Test
+    public void  testFirstDigitEqualsLastDigit3(){
+        assertTrue(IntListExercises.firstDigitEqualsLastDigit(101));
+    }
+
+    @Test
+    public void  testMax(){
+        IntList L = IntList.of(535, 565, 35, 11, 10, 565);
+        assertEquals(IntListExercises.max(L), 565);
+    }
+
+    @Test
+    public void  testMax2(){
+        IntList L = IntList.of(1, 1, 1, 1, 1, 1);
+        assertEquals(IntListExercises.max(L), 1);
+    }
+
+    @Test
+    public void testZeroOutFELMaxes4() {
+        IntList L = IntList.of();
+        IntListExercises.setToZeroIfMaxFEL(L);
+        assertNull(L);
+    }
 }
