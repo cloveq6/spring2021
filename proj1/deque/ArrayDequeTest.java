@@ -1,5 +1,6 @@
 package deque;
 
+import edu.princeton.cs.algs4.StdRandom;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -164,5 +165,52 @@ public class ArrayDequeTest {
         }
         boolean flag = lld1.equals(lld2);
         assertTrue(flag);
+    }
+
+    @Test
+    public void randomTest(){
+        Deque<Integer> B = new ArrayDeque<>();
+        Deque<Integer> L = new LinkedListDeque<>();
+
+        int N = 500000;
+        for (int i = 0; i < N; i += 1) {
+            int operationNumber = StdRandom.uniform(0, 6);
+            if (operationNumber == 0) {
+                // addLast
+                int randVal = StdRandom.uniform(0, 100);
+                L.addLast(randVal);
+                B.addLast(randVal);
+                System.out.println("addLast(" + randVal + ")");
+            } else if (operationNumber == 1) {
+                // size
+                int size = L.size();
+                assertEquals(L.size(), B.size());
+                System.out.println("size: " + size);
+            } else if (operationNumber == 2){
+                // last item
+                if (L.size() == 0) continue;
+                Integer item = L.get(L.size() - 1);
+                assertEquals(L.get(L.size() - 1), B.get(L.size() - 1));
+                System.out.println("item(" + item + ")");
+            } else if (operationNumber == 3){
+                if (L.size() == 0) continue;
+                Integer removeLast = L.removeLast();
+                Integer removeLast1 = B.removeLast();
+                assertEquals(removeLast, removeLast1);
+                System.out.println("removeItemLast(" + removeLast + ")");
+            } else if (operationNumber == 4){
+                if (L.size() == 0) continue;;
+                Integer removeFirst = L.removeFirst();
+                Integer removeFirst1 = B.removeFirst();
+                assertEquals(removeFirst, removeFirst1);
+                System.out.println("removeItemFirst(" + removeFirst + ")");
+            } else if (operationNumber == 5){
+                // addLast
+                int randVal = StdRandom.uniform(0, 100);
+                L.addFirst(randVal);
+                B.addFirst(randVal);
+                System.out.println("addFirst(" + randVal + ")");
+            }
+        }
     }
 }
