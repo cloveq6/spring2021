@@ -145,11 +145,10 @@ public class LinkedListDeque<T> implements Deque<T>{
      *判断o是否是双端队列，且相同
      */
     public boolean equals(Object o){
-        if (! (o instanceof LinkedListDeque)) return false;
-        LinkedListDeque<T> newObject = (LinkedListDeque)o;
-        if (newObject.size() != this.size) return false;
+        if (! (o instanceof Deque)) return false;
+        if (((Deque<?>) o).size() != this.size) return false;
         for (int i=0; i<size(); ++i){
-            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
+            if(!this.iterator().next().equals(((Deque<?>) o).iterator().next())) return false;
         }
         return true;
     }

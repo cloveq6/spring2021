@@ -76,7 +76,7 @@ public class ArrayDeque<T> implements Deque<T>{
 
     public T removeFirst(){
         if (isEmpty()) return null;
-        if ((size < items.length / 2) && (size > 4)) {
+        if ((size + 1 < items.length / 2) && (size > 4)) {
             resize(items.length / 2);
         }
         nextFirst = (nextFirst + 1) % items.length;
@@ -88,7 +88,7 @@ public class ArrayDeque<T> implements Deque<T>{
 
     public T removeLast(){
         if (isEmpty()) return null;
-        if ((size < items.length / 2) && (size > 4)) {
+        if ((size + 1 < items.length / 2) && (size > 4)) {
             resize(items.length / 2);
         }
         nextLast = (nextLast - 1 + items.length ) % items.length;
@@ -111,13 +111,21 @@ public class ArrayDeque<T> implements Deque<T>{
         return new ArrayDequeIterator();
     }
 
+//    public boolean equals(Object o){
+//        if (! (o instanceof ArrayDeque)) return false;
+//        ArrayDeque<T> newObject = (ArrayDeque)o;
+//        if (newObject.size() != this.size) return false;
+//
+//        for (int i=0; i<size(); ++i){
+//            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
+//        }
+//        return true;
+//    }
     public boolean equals(Object o){
-        if (! (o instanceof ArrayDeque)) return false;
-        ArrayDeque<T> newObject = (ArrayDeque)o;
-        if (newObject.size() != this.size) return false;
-
+        if (! (o instanceof Deque)) return false;
+        if (((Deque<?>) o).size() != this.size) return false;
         for (int i=0; i<size(); ++i){
-            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
+            if(!this.iterator().next().equals(((Deque<?>) o).iterator().next())) return false;
         }
         return true;
     }
@@ -145,7 +153,7 @@ public class ArrayDeque<T> implements Deque<T>{
             i += 1;
         }
         nextFirst = 0;
-        nextLast = items.length;
+        nextLast = size() + 1;
         items = a;
     }
 }
