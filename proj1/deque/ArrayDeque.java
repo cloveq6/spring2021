@@ -112,20 +112,22 @@ public class ArrayDeque<T> implements Deque<T>{
     }
 
     public boolean equals(Object o){
-        Deque<T> newObject;
-        if (o instanceof ArrayDeque){
-            newObject = (ArrayDeque)o;
-        }else if (o instanceof LinkedListDeque){
-            newObject = (LinkedListDeque)o;
-        }else{
-            return false;
-        }
-        if (newObject.size() != this.size) return false;
+        if (! (o instanceof Deque)) return false;
         for (int i=0; i<size(); ++i){
-            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
+            if (!this.get(i).equals(((Deque<?>) o).get(i))) return false;
         }
         return true;
     }
+//    public boolean equals(Object o){
+//        if (! (o instanceof ArrayDeque)) return false;
+//        ArrayDeque<T> newObject = (ArrayDeque)o;
+//        if (newObject.size() != this.size) return false;
+//
+//        for (int i=0; i<size(); ++i){
+//            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
+//        }
+//        return true;
+//    }
 //    public boolean equals(Object o){
 //        if (! (o instanceof Deque)) return false;
 //        if (((Deque<?>) o).size() != this.size) return false;
