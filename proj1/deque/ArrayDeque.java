@@ -76,6 +76,9 @@ public class ArrayDeque<T> implements Deque<T>{
 
     public T removeFirst(){
         if (isEmpty()) return null;
+        if ((size < items.length / 2) && (size > 4)) {
+            resize(items.length / 2);
+        }
         nextFirst = (nextFirst + 1) % items.length;
         T removeItem = items[nextFirst];
         items[nextFirst] = null;
@@ -85,6 +88,9 @@ public class ArrayDeque<T> implements Deque<T>{
 
     public T removeLast(){
         if (isEmpty()) return null;
+        if ((size < items.length / 2) && (size > 4)) {
+            resize(items.length / 2);
+        }
         nextLast = (nextLast - 1 + items.length ) % items.length;
         T removeItem = items[nextLast];
         items[nextLast] = null;
@@ -111,7 +117,7 @@ public class ArrayDeque<T> implements Deque<T>{
         if (newObject.size() != this.size) return false;
 
         for (int i=0; i<size(); ++i){
-            if(this.iterator().next() != newObject.iterator().next()) return false;
+            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
         }
         return true;
     }

@@ -149,7 +149,7 @@ public class LinkedListDeque<T> implements Deque<T>{
         LinkedListDeque<T> newObject = (LinkedListDeque)o;
         if (newObject.size() != this.size) return false;
         for (int i=0; i<size(); ++i){
-            if(this.iterator().next() != newObject.iterator().next()) return false;
+            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
         }
         return true;
     }
