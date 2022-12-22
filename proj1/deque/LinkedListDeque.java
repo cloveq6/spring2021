@@ -144,11 +144,26 @@ public class LinkedListDeque<T> implements Deque<T>{
     /**
      *判断o是否是双端队列，且相同
      */
+//    public boolean equals(Object o){
+//        if (! (o instanceof Deque)) return false;
+//        if (((Deque<?>) o).size() != this.size) return false;
+//        for (int i=0; i<size(); ++i){
+//            if(!this.iterator().next().equals(((Deque<?>) o).iterator().next())) return false;
+//        }
+//        return true;
+//    }
     public boolean equals(Object o){
-        if (! (o instanceof Deque)) return false;
-        if (((Deque<?>) o).size() != this.size) return false;
+        Deque<T> newObject;
+        if (o instanceof ArrayDeque){
+            newObject = (ArrayDeque)o;
+        }else if (o instanceof LinkedListDeque){
+            newObject = (LinkedListDeque)o;
+        }else{
+            return false;
+        }
+        if (newObject.size() != this.size) return false;
         for (int i=0; i<size(); ++i){
-            if(!this.iterator().next().equals(((Deque<?>) o).iterator().next())) return false;
+            if(!this.iterator().next().equals(newObject.iterator().next())) return false;
         }
         return true;
     }
