@@ -12,9 +12,9 @@ public class MaxArrayDeque<T> extends ArrayDeque<T>{
     public T max(){
         if (size() == 0) return null;
         T res = get(0);
-        for (T item : this){
-            if (comparator.compare(item, res) > 0){
-                res = item;
+        for (int i=0 ;i<size(); ++i){
+            if(comparator.compare(this.get(i), res) > 0 ){
+                res = this.get(i);
             }
         }
         return res;
@@ -23,9 +23,9 @@ public class MaxArrayDeque<T> extends ArrayDeque<T>{
     public T max(Comparator<T> c){
         if (size() == 0) return null;
         T res = get(0);
-        for (T item : this){
-            if (c.compare(item, res) > 0){
-                res = item;
+        for (int i=0 ;i<size(); ++i){
+            if(c.compare(this.get(i), res) > 0 ){
+                res = this.get(i);
             }
         }
         return res;
