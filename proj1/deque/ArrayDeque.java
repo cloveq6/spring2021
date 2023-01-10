@@ -111,6 +111,9 @@ public class ArrayDeque<T> implements Deque<T>{
         return new ArrayDequeIterator();
     }
 
+    /**
+     * todo 需要按照CS61B的实现方式
+     */
     public boolean equals(Object o){
         if (! (o instanceof Deque)) return false;
         if (((Deque<?>) o).size() != size()) return false;
